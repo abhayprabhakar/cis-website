@@ -14,7 +14,10 @@
 
     <!-- Navbar -->
     <nav>
-        <div class="logo">IEEE CIS</div>
+        <div class="logo"><a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/IEEE_CIS_logo_White_RGB_72ppi.png') }}" alt="IEEE CIS Logo" class="logo">
+        </a>
+        </div>
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('about') }}">About</a></li>
