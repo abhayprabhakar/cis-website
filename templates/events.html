@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - IEEE CIS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">IEEE CIS</div>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('team') }}">team</a></li>
+            <li><a href="{{ url_for('events') }}">Events</a></li>
+            <li><a href="{{ url_for('societies') }}">Societies</a></li>
+            <li><a href="{{ url_for('membership') }}">Membership</a></li>
+            <li><a href="{{ url_for('articles') }}">Articles</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <h1>Events</h1>
+        <p>Check out our upcoming events!</p>
+    </section>
+
+</body>
+</html>
