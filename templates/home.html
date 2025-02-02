@@ -44,7 +44,50 @@
 <section class="about">
     <div class="about-content">
         <h2>About Us</h2>
-        <p>IEEE Computational Intelligence Society (CIS) at BMSIT&M is dedicated to advancing technology in AI, ML, and computational intelligence. We aim to foster innovation and provide a platform for students to collaborate and grow.</p>
+        
+        <div class="about-content-block">
+            <div class="about-carousel">
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/about1.jpg') }}" alt="AI Lab">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/about2.jpg') }}" alt="Workshop">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/about1.jpg') }}" alt="Team">
+                </div>
+            </div>
+            <div class="about-text">
+                <p>IEEE Computational Intelligence Society (CIS) at BMSIT&M is dedicated to advancing technology in AI, ML, and computational intelligence. We aim to foster innovation and provide a platform for students to collaborate and grow.</p>
+            </div>
+        </div>
+        
+
+        <div class="about-content-block">
+            <div class="about-carousel">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='images/about1.jpg') }}" alt="Hackathon">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='images/about2.jpg') }}" alt="Research">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='images/about1.jpg') }}" alt="Event">
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='images/hackathon1.jpg') }}" alt="Hackathon">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='images/research1.jpg') }}" alt="Research">
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <p>Through workshops, hackathons, and research initiatives, we empower students to push the boundaries of intelligent systems. Our community-driven approach ensures knowledge sharing and professional development.</p>
+            </div>
+        </div>
     </div>
 </section>
     
@@ -59,7 +102,8 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/BokehPass.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/animation.js') }}"></script>
     <script>
         window.addEventListener("scroll", function () {
             let navbar = document.querySelector("nav");
@@ -70,6 +114,6 @@
             }
         });
     </script>
-    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
