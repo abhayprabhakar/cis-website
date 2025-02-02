@@ -39,6 +39,14 @@
             </div>
         </div>
     </section>
+
+    <!-- About Us Section -->
+<section class="about">
+    <div class="about-content">
+        <h2>About Us</h2>
+        <p>IEEE Computational Intelligence Society (CIS) at BMSIT&M is dedicated to advancing technology in AI, ML, and computational intelligence. We aim to foster innovation and provide a platform for students to collaborate and grow.</p>
+    </div>
+</section>
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -52,6 +60,16 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/BokehPass.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
+    <script>
+        window.addEventListener("scroll", function () {
+            let navbar = document.querySelector("nav");
+            if (window.scrollY > 50) { // When scrolled down 50px
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+    
 </body>
 </html>

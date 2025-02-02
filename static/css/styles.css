@@ -2,11 +2,12 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1A1A1A;
+    background-color: #1E1E1E;
     color: #FFFFFF;
 }
 
-/* Navbar */
+
+/* Navbar default (transparent) */
 nav {
     display: flex;
     justify-content: space-between;
@@ -14,12 +15,19 @@ nav {
     padding: 1rem 5%;
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0, 0, 0, 0);
-
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 10;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Navbar after scrolling */
+nav.scrolled {
+    background-color: rgba(50, 50, 50, 0.9); /* Dark Grey */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo {
@@ -65,7 +73,7 @@ nav ul li a:hover {
     justify-content: center;
     text-align: center;
     color: #FFFFFF; 
-    background: #000000; 
+    background: #1E1E1E; 
     overflow: hidden;
 }
 
