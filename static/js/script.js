@@ -1,5 +1,3 @@
-
-
 // Initialize Three.js scene
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x000000, 0.03);
@@ -114,46 +112,47 @@ const nodeMeshes = nodes.map(node => {
     return mesh;
 });
 
-// Create connections
+// Create connections with distance threshold
 const connectionMaterial = new THREE.LineBasicMaterial({
     color: 0x88ccff,
     transparent: true,
     opacity: 0.2
 });
 
-const maxConnections = 3;
+const maxDistance = 8; // Maximum distance for connections
+const maxConnectionsPerNode = 3; // Maximum number of connections per node
+
 nodes.forEach((node, i) => {
+    // Calculate distances to all other nodes
     const distances = nodes.map((other, j) => ({
         distance: node.position.distanceTo(other.position),
         index: j
-    }));
+    })).filter(d => d.index !== i && d.distance <= maxDistance);
     
+    // Sort by distance and take only the closest ones
     distances.sort((a, b) => a.distance - b.distance);
+    const nearestNeighbors = distances.slice(0, maxConnectionsPerNode);
     
-    // Connect to nearest nodes
-    for (let j = 1; j <= maxConnections && j < distances.length; j++) {
-        const otherIndex = distances[j].index;
-        if (!node.connections.includes(otherIndex)) {
-            node.connections.push(otherIndex);
-            nodes[otherIndex].connections.push(i);
+    // Create connections to nearest neighbors
+    nearestNeighbors.forEach(neighbor => {
+        if (!node.connections.includes(neighbor.index)) {
+            node.connections.push(neighbor.index);
         }
-    }
+    });
 });
 
 // Create connection lines
 const connectionGeometry = new THREE.BufferGeometry();
-const positions = new Float32Array(nodes.length * maxConnections * 6);
+const positions = new Float32Array(nodes.length * maxConnectionsPerNode * 6);
 connectionGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 const connections = new THREE.LineSegments(connectionGeometry, connectionMaterial);
 scene.add(connections);
 
-composer.addPass(renderPass);
-
 // Add BokehPass (Depth of Field)
 const bokehPass = new THREE.BokehPass(scene, camera, {
-    focus: 0.8, // A1just the focus point (distance from camera to focus)
-    aperture: 0.0001, // Adjust the aperture to control blur amount
-    maxblur: 1.0, // Maximum blur strength
+    focus: 0.8,
+    aperture: 0.0001,
+    maxblur: 1.0,
     width: window.innerWidth,
     height: window.innerHeight
 });
@@ -189,8 +188,32 @@ function animate() {
         nodeMeshes[i].scale.setScalar(0.8 + node.activationLevel * 0.4);
     });
 
-    // Update connections
+    // Update connections dynamically based on current positions
+    nodes.forEach((node, i) => {
+        // Clear existing connections
+        node.connections = [];
+        
+        // Calculate current distances to all other nodes
+        const distances = nodes.map((other, j) => ({
+            distance: node.position.distanceTo(other.position),
+            index: j
+        })).filter(d => d.index !== i && d.distance <= maxDistance);
+        
+        // Update connections to nearest neighbors
+        distances.sort((a, b) => a.distance - b.distance);
+        const nearestNeighbors = distances.slice(0, maxConnectionsPerNode);
+        nearestNeighbors.forEach(neighbor => {
+            if (!node.connections.includes(neighbor.index)) {
+                node.connections.push(neighbor.index);
+            }
+        });
+    });
+
+    // Update connection positions
     const positions = connections.geometry.attributes.position.array;
+    // First, clear all positions
+    positions.fill(0);
+    
     let index = 0;
     nodes.forEach((node, i) => {
         node.connections.forEach(connectionIndex => {
