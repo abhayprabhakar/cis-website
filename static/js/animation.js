@@ -69,7 +69,7 @@ class NeuralNode {
         this.position.add(this.velocity);
 
         // Bounce off boundaries
-        const bound = 20;
+        const bound = 15;
         ['x', 'y', 'z'].forEach(axis => {
             if (Math.abs(this.position[axis]) > bound) {
                 this.position[axis] = Math.sign(this.position[axis]) * bound;
@@ -116,7 +116,7 @@ const nodeMeshes = nodes.map(node => {
 const connectionMaterial = new THREE.LineBasicMaterial({
     color: 0x88ccff,
     transparent: true,
-    opacity: 0.2
+    opacity: 0.5
 });
 
 const maxDistance = 8; // Maximum distance for connections
@@ -151,7 +151,7 @@ scene.add(connections);
 // Add BokehPass (Depth of Field)
 const bokehPass = new THREE.BokehPass(scene, camera, {
     focus: 1.0,
-    aperture: 0.001,
+    aperture: 0.0001,
     maxblur: 1.0,
     width: window.innerWidth,
     height: window.innerHeight
@@ -159,7 +159,7 @@ const bokehPass = new THREE.BokehPass(scene, camera, {
 composer.addPass(bokehPass);
 
 // Camera setup
-camera.position.z = 10;
+camera.position.z = 20;
 
 // Mouse interaction
 const mouse = new THREE.Vector2();
