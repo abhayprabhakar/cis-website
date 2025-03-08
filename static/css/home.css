@@ -183,6 +183,7 @@ nav ul li a:hover {
 .overview-section {
   background-color: var(--dark-bg);
   padding: 60px 20px;
+  text-align: center;
 }
 
 .container {

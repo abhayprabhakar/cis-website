@@ -206,7 +206,7 @@ function render() {
 
 const volunteersData = [
   {
-    name: "Umashankar ",
+    name: "Umashankar",
     position: "Chair",
     order: 1,
     socialLinks: {},
@@ -311,7 +311,7 @@ const volunteersData = [
     position: "Content & Design Head",
     order: 13,
     socialLinks: {},
-    image: "/static/images/execom/avatar1.png",
+    image: "/static/images/execom/meghna.jpeg",
   },
   {
     name: "Disha Jain",
@@ -356,7 +356,7 @@ const volunteersData = [
       instagram: "https://www.instagram.com/sagaryj03/",
       github: "https://github.com/Sagaryj",
     },
-    image: "/static/images/execom/avatar1.png",
+    image: "/static/images/execom/sagar.JPG",
   },
   {
     name: "Keerthana Sindhu",
