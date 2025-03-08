@@ -29,9 +29,11 @@ body {
   --secondary-color: #00629b;
   --dark-bg: #060606;
   --dark-bright-bg: #101010;
-  --dark-bright-bg-nav: rgba(16, 16, 16, 0.9)
+  --dark-bright-bg-nav: rgba(16, 16, 16, 0.9);
   --hero-font: "Doto";
+  --padding-card: 16px;
 }
+
 
 .logo {
   color: var(--primary-color);
@@ -64,7 +66,7 @@ nav ul li a:hover {
   justify-content: center;
   text-align: center;
   color: #ffffff;
-  background: #1e1e1e;
+  background: #060606;
   overflow: hidden;
 }
 
@@ -222,6 +224,15 @@ nav ul li a:hover {
   justify-content: space-evenly;
   align-items: space-evenly;
   gap: 2rem;
+  margin-bottom: 50px;
+
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .events-container {
@@ -232,48 +243,67 @@ nav ul li a:hover {
 }
 
 .event-card {
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  font-family: 'Poppins', Arial;
   text-align: left;
   border: 2px solid #222;
     width: 330px;
-    height: 480px;
+    height: 420px;
     border-radius: 30px;
     background: var(--dark-bright-bg);
   transition: transform 0.3s;
   transition: all 0.3s;
 }
 
-.event-card:hover {
-  border-color: var(--secondary-color);
+.event-card::after {
+  content: "";
+  position: absolute;
+  inset:0;
+  padding: 3px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .event-image {
   width: 100%;
-  height: 40%;
+  height: 50%;
   object-fit: cover;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }
 
-.event-date {
-  font-size: 14px;
+.event-type {
+  font-size: 0.9rem;
   color: #777;
   margin-top: 0.4rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--padding-card);
+  padding-right: var(--padding-card);
+}
+
+.event-date {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.4rem;
+  padding-left: var(--padding-card);
+  padding-right: var(--padding-card);
 }
 
 .event-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-top: 0rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--padding-card);
+  padding-right: var(--padding-card);
 }
 
 .event-description {
-  font-size: 16px;
-  padding: 10px;
-  color: #777;
+  font-size: 1rem;
+  padding: var(--padding-card);
+  color: #AAA;
 }
 
 /* Image Section */
@@ -299,8 +329,15 @@ nav ul li a:hover {
   .text-content, .image-content {
       max-width: 100%;
   }
+  .text-content-h2 {
+    order: 1;
+  }
   .text-content {
       padding-bottom: 20px;
+      order: 3;
+  }
+  .image-content {
+      order: 2;
   }
 }
 
